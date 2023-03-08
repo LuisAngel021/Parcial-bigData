@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 from urllib.request import urlopen
 
 client = boto3.client('s3')
-BUCKET_NAME = 'bigdata-parcial'
+BUCKET_NAME = 'landing-casas-021'
 
 def mi_funcion():
     

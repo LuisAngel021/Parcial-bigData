@@ -9,12 +9,38 @@
         "profile_name": "default",
         "project_name": "parcial",
         "runtime": "python3.8",
-        "s3_bucket": "bigdata-parcial",
+        "s3_bucket": "landing-casas-021",
         
         "events": [{
             "function": "apps.f",
             "event_source": {
-                "arn": "arn:aws:s3:::bigdata-parcial",
+                "arn": "arn:aws:s3:::landing-casas-021",
+                "events": [
+                    "s3:ObjectCreated:*"
+                ]
+            }
+        }, {
+            "function": "apps.f",
+            "expressions": ["cron(0 9 ? * MON *)"]
+        }]
+    },
+    
+    "dev2": {
+        "app_function": "apps2.f",
+        "keep_warm": false,
+        "role_name": "LabRole",
+        "manage_roles": false,
+        "apigateway_enabled": false,
+        "aws_region": "us-east-1",
+        "profile_name": "default",
+        "project_name": "parcial",
+        "runtime": "python3.8",
+        "s3_bucket": "landing-casas-021",
+        
+       "events": [{
+            "function": "apps.f",
+            "event_source": {
+                "arn": "arn:aws:s3:::landing-casas-021",
                 "events": [
                     "s3:ObjectCreated:*"
                 ]
