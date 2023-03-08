@@ -9,16 +9,19 @@
         "profile_name": "default",
         "project_name": "parcial",
         "runtime": "python3.8",
-        "s3_bucket": "bigdata-parcial"
+        "s3_bucket": "bigdata-parcial",
         
-         "events": [{
+        "events": [{
             "function": "apps.f",
             "event_source": {
-                  "arn":  "arn:aws:s3:::bigdata-parcial",
-                  "events": [
-                    "s3:ObjectCreated:*" // Supported event types: http://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html#supported-notification-event-types
-                  ]
-            }}]
-        
+                "arn": "arn:aws:s3:::bigdata-parcial",
+                "events": [
+                    "s3:ObjectCreated:*"
+                ]
+            }
+        }, {
+            "function": "apps.f",
+            "expressions": ["cron(0 9 ? * MON *)"]
+        }]
     }
 }
