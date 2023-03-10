@@ -1,6 +1,6 @@
 {
     "dev": {
-        "app_function": "apps.f",
+        "app_function": "funciones.capturar_html",
         "keep_warm": false,
         "role_name": "LabRole",
         "manage_roles": false,
@@ -12,21 +12,13 @@
         "s3_bucket": "landing-casas-021",
         
         "events": [{
-            "function": "apps.f",
-            "event_source": {
-                "arn": "arn:aws:s3:::landing-casas-021",
-                "events": [
-                    "s3:ObjectCreated:*"
-                ]
-            }
-        }, {
-            "function": "apps.f",
-            "expressions": ["cron(0 9 ? * MON *)"]
+            "function": "funciones.capturar_html",
+            "expressions": ["cron(0 14 ? * MON *)"]
         }]
     },
     
     "dev2": {
-        "app_function": "apps2.f",
+        "app_function": "funciones.lambda2",
         "keep_warm": false,
         "role_name": "LabRole",
         "manage_roles": false,
@@ -35,19 +27,16 @@
         "profile_name": "default",
         "project_name": "parcial",
         "runtime": "python3.8",
-        "s3_bucket": "landing-casas-021",
+        "s3_bucket": "casas-final-021",
         
        "events": [{
-            "function": "apps.f",
+            "function": "funciones.lambda2",
             "event_source": {
                 "arn": "arn:aws:s3:::landing-casas-021",
                 "events": [
                     "s3:ObjectCreated:*"
                 ]
             }
-        }, {
-            "function": "apps.f",
-            "expressions": ["cron(0 9 ? * MON *)"]
         }]
     }
 }
