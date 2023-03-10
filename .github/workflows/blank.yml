@@ -24,19 +24,16 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-      - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
           python-version: '3.8'
 
       - name: Run a one-line script
         run: echo Hello, world!
-      
       - name: Listar archivos
         run:  |
           ls
           pwd
-      
       - name: Install virtualenv and execute pytest
         run:  |    
           pip install virtualenv
@@ -44,7 +41,6 @@ jobs:
           source env/bin/activate
           pip install -r requirements.txt
           pytest
-      
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
