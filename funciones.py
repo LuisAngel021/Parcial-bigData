@@ -15,7 +15,6 @@ def capturar_html():
     html_file = f"{datetime.datetime.now().strftime('%Y-%m-%d')}.html"
     client.put_object(Bucket=BUCKET_NAME, Key=html_file, Body=response.content)
 
-capturar_html()
 
 def lambda2():
     s3 = boto3.resource('s3')
