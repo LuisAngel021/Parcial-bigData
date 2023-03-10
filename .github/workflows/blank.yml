@@ -61,7 +61,7 @@ jobs:
          
       - name: Update zappa
         run: |
-            zappa update dev1
+            zappa update dev
             zappa update dev2
       
         
