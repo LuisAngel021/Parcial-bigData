@@ -57,7 +57,11 @@ jobs:
              
       - name: Install virtualenv and execute pytest
         run:  |    
-         pytest
+         pytest 
          
+      - name: Update zappa
+        run: |
+            zappa update dev
+            
       
         
