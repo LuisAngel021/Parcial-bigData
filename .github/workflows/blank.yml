@@ -37,7 +37,7 @@ jobs:
       - name: Install virtualenv and execute pytest
         run:  |    
           pip install pytest-mock
-          pip install request
+          pip install requests
           pip install beautifulsoup4
           pip install virtualenv
           virtualenv env
