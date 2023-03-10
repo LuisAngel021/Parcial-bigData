@@ -36,6 +36,7 @@ jobs:
           pwd
       - name: Install virtualenv and execute pytest
         run:  |    
+          pip install boto3
           pip install pytest-mock
           pip install requests
           pip install beautifulsoup4
