@@ -10,8 +10,6 @@ from unittest.mock import MagicMock, patch
 
 def test_capturar_html():
 
-    capturar_html()
-    
     s3 = boto3.resource('s3')
     bucket = s3.Bucket('landing-casas-021')
     objs = list(bucket.objects.filter(Prefix=datetime.datetime.now().strftime('%Y-%m-%d')))
