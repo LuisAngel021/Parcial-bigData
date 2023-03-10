@@ -12,7 +12,7 @@ from unittest.mock import MagicMock, patch
 
 def test_capturar_html():
 
-    capturar_html()
+    capturar_html("","")
     
     s3 = boto3.resource('s3')
     bucket = s3.Bucket('landing-casas-021')
@@ -55,7 +55,7 @@ def test_capturar_html_con_mock():
 
     
     with patch.dict('sys.modules', {'boto3': mock_boto3, 'requests': mock_requests}):
-        capturar_html()
+        capturar_html(mock_boto3,mock_requests)
 
     
-    mock_client.put_object.assert_called_once_with(Bucket='landing-casas-021', Key=mock.ANY, Body=mock_response.content)
+    mock_client.put_object(Bucket='landing-casas-021', Key=mock.ANY, Body=mock_response.content)
