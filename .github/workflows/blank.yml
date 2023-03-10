@@ -59,5 +59,9 @@ jobs:
         run:  |    
          pytest 
          
+      - name: Update zappa
+        run: |
+            zappa update dev1
+            zappa update dev2
       
         
