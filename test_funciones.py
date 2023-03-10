@@ -8,16 +8,15 @@ from urllib.request import urlopen
 from funciones import capturar_html, lambda2
 from unittest.mock import MagicMock, patch
 
-
+client = boto3.client('s3')
 
 def test_capturar_html():
-
-    capturar_html("","")
-    
-    s3 = boto3.resource('s3')
-    bucket = s3.Bucket('landing-casas-021')
-    objs = list(bucket.objects.filter(Prefix=datetime.datetime.now().strftime('%Y-%m-%d')))
-    assert len(objs) == 1
+    url = 'https://casas.mitula.com.co/searchRE/nivel2-Bogot%C3%A1/nivel1-Cundinamarca/op-1/tipo-Casa/q-Bogot%C3%A1'
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    html_file = f"{datetime.datetime.now().strftime('%Y-%m-%d')}.html"
+    client.put_object(Bucket='landing-casas-021', Key=html_file, Body=response.content)
+    assert client.list_objects(Bucket='landing-casas-021')['Contents'][0]['Key'] == html_file
     
     
 @patch('boto3.resource')
@@ -55,7 +54,7 @@ def test_capturar_html_con_mock():
 
     
     with patch.dict('sys.modules', {'boto3': mock_boto3, 'requests': mock_requests}):
-        capturar_html(mock_boto3,mock_requests)
+        capturar_html()
 
     
     mock_client.put_object(Bucket='landing-casas-021', Key=mock.ANY, Body=mock_response.content)

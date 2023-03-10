@@ -8,13 +8,14 @@ from urllib.request import urlopen
 client = boto3.client('s3')
 BUCKET_NAME = 'landing-casas-021'
 
-def capturar_html(url, x):
+def capturar_html():
     url = 'https://casas.mitula.com.co/searchRE/nivel2-Bogot%C3%A1/nivel1-Cundinamarca/op-1/tipo-Casa/q-Bogot%C3%A1'
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
     html_file = f"{datetime.datetime.now().strftime('%Y-%m-%d')}.html"
     client.put_object(Bucket=BUCKET_NAME, Key=html_file, Body=response.content)
 
+capturar_html()
 
 def lambda2():
     s3 = boto3.resource('s3')
