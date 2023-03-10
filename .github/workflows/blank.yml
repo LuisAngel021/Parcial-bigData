@@ -61,11 +61,7 @@ jobs:
          
       - name: Update zappa
         run: |
-            pip install virtualenv
-            virtualenv env
-            source env/bin/activate
-            pip install -r requirements.txt
             zappa update dev
-            zappa update dev2
+            
       
         
