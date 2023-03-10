@@ -18,7 +18,7 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -45,7 +45,7 @@ jobs:
           pip install beautifulsoup4
           pip install virtualenv
           virtualenv env
-          source env/bin/activate
+          
        
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -60,7 +60,7 @@ jobs:
          pytest 
          
       - name: Update zappa
-        run: |
+        run: source env/bin/activate
             zappa update dev
             
             
