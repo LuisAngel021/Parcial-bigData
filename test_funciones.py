@@ -11,7 +11,7 @@ client = boto3.client('s3')
 def test_capturar_html():
     url = 'https://casas.mitula.com.co/searchRE/nivel2-Bogot%C3%A1/nivel1-Cundinamarca/op-1/tipo-Casa/q-Bogot%C3%A1'
     response = requests.get(url)
-    html_file = f"{datetime.datetime.now().strftime('%Y-%m-%d')}.html"
+    html_file = "{}.html".format(datetime.datetime.now().strftime('%Y-%m-%d'))
     client.put_object(Bucket='landing-casas-021', Key=html_file, Body=response.content)
     assert client.list_objects(Bucket='landing-casas-021')['Contents'][0]['Key'] == html_file
 
